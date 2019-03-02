@@ -1,0 +1,12 @@
+<nav>
+	<ul class="pagination">
+		<li data-ng-class="{'page-item' : true, 'disabled' : pageNumber <= 0}"><a
+			class="page-link" href="{{url}}/{{+ pageNumber - 1}}/{{pageSize}}/{{sort}}">Previous</a></li>
+		<li data-ng-repeat="number in numbers"
+			data-ng-class="{'page-item' : true, 'active' : pageNumber == number}"><a
+			class="page-link" href="{{url}}/{{number}}/{{pageSize}}/{{sort}}">{{number + 1}}</a></li>
+		<li
+			data-ng-class="{'page-item' : true, 'disabled' : pageNumber >= + totalPages - 1}"><a
+			class="page-link" href="{{url}}/{{+ pageNumber + 1}}/{{pageSize}}/{{sort}}">Next</a></li>
+	</ul>
+</nav>

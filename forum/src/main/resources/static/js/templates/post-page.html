@@ -1,0 +1,77 @@
+<div class="row">
+	<div class="col-sm-10 offset-sm-1" data-ng-hide="show">
+		<br>
+		<h4>{{post.title}}</h4>
+		<hr>
+		{{post.content}} <br> <br>
+		<div class="text-right">{{post.createdOn}}</div>
+		<div class="text-right font-weight-bold">Posted&nbsp;by&nbsp;{{post.user.name}}</div>
+		<hr>
+		<div class="text-right" data-ng-show="loggedUser.id === post.user.id">
+			<button class="btn btn-primary" data-ng-click="show = true">Edit</button>
+			<button class="btn btn-danger"
+				data-ng-click="deletePostById(post.id)">Delete</button>
+		</div>
+		<br>
+	</div>
+
+	<div class="col-sm-10 offset-sm-1" data-ng-show="show">
+		<br>
+		<form data-ng-submit="updatePost(post, post.id)">
+			<div>
+				<input data-ng-model="post.title" class="form-control">
+			</div>
+			<div>
+				<textarea rows="3" cols="20" data-ng-model="post.content"
+					class="form-control"></textarea>
+			</div>
+			<div class="text-right">
+				<button type="submit" class="btn btn-primary">Update</button>
+				<button type="reset" class="btn btn-primary"
+					data-ng-click="show = false">Cancel</button>
+			</div>
+		</form>
+		<br>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-9 offset-sm-2">
+		<div data-ng-repeat="comment in comments">
+			<div>{{comment.content}}</div>
+			<div class="text-right">{{comment.createdOn}}</div>
+			<div class="text-right font-weight-bold">Posted&nbsp;by&nbsp;{{comment.user.name}}</div>
+			<hr>
+			<div class="text-right"
+				data-ng-show="loggedUser.id === comment.user.id">
+				<button class="btn btn-primary"
+					data-ng-click="editComment(comment.id)">Edit</button>
+				<button class="btn btn-danger"
+					data-ng-click="deleteCommentById(comment.id)">Delete</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-10 offset-sm-1" data-ng-show="loggedUser">
+		<br>
+		<form>
+			<div>
+				<textarea rows="3" cols="20" data-ng-model="comment.content"
+					class="form-control" placeholder="Add comment...."></textarea>
+			</div>
+			<div class="text-right">
+				<button class="btn btn-primary" data-ng-hide="update"
+					data-ng-click="saveComment(comment)">Add&nbsp;Comment</button>
+				<button class="btn btn-primary" data-ng-show="update"
+					data-ng-click="updateComment(comment, comment.id)">Update&nbsp;Comment</button>
+				<button class="btn btn-primary" data-ng-show="update"
+					data-ng-click="cancel()">Cancel</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+
